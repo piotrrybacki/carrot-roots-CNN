@@ -1,0 +1,97 @@
+import os, shutil
+import scipy as scipy
+import tf
+import total as total
+from keras.utils.version_utils import training
+
+original_dataset_dir = '/carrot/roots/train/train'
+
+base_dir = './carrot_roots_small'
+os.mkdir(base_dir)
+
+#Directories for the training, validation, and test splits
+train_dir = os.path.join(base_dir, 'train') #teaching directory
+os.mkdir(train_dir)
+validation_dir = os.path.join(base_dir, 'validation') #validation directory
+os.mkdir(validation_dir)
+test_dir = os.path.join(base_dir, 'test') #test directory
+os.mkdir(test_dir)
+
+#Extra class carrot root training catalogue
+train_extra_class_dir = os.path.join(train_dir, 'extra_class') 
+os.mkdir(train_extra_class_dir)
+
+#First class carrot root training catalogue
+train_ first_class_dir = os.path.join(train_dir, 'first_class') 
+os.mkdir(train_ first_class_dir)
+
+#Second class carrot root training catalogue
+train_second_class_dir = os.path.join(train_dir, 'second_class') 
+os.mkdir(train_ second_class_dir)
+
+#Training catalogue of unclassified carrot roots 
+train_not_classified_dir = os.path.join(train_dir, 'not_classified') 
+os.mkdir(train_not_classified_dir)
+
+#Validation catalogue of extra class carrot roots
+validation_extra_class_dir = os.path.join(validation_dir, 'extra_class') 
+os.mkdir(validation_extra_class_dir)
+
+#Validation catalogue of first class carrot roots
+validation_ first_class_dir = os.path.join(validation_dir, 'first_class') 
+os.mkdir(validation_ first_class_dir)
+
+#Validation catalogue of second class carrot roots
+validation_second_class_dir = os.path.join(validation_dir, 'second_class') 
+os.mkdir(validation_ second_class_dir)
+
+#Validation catalogue of unclassified carrot roots 
+validation_not_classified_dir = os.path.join(validation_dir, 'not_classified') 
+os.mkdir(validation_not_classified_dir)
+
+#Test catalogue of extra class carrot roots
+test_extra_class_dir = os.path.join(test_dir, 'extra_class') 
+os.mkdir(test_extra_class_dir)
+
+#First class carrot root test catalogue
+test_ first_class_dir = os.path.join(test_dir, 'first_class') 
+os.mkdir(test_ first_class_dir)
+
+#Test catalogue of second class carrot roots
+test_second_class_dir = os.path.join(test_dir, 'second_class') 
+os.mkdir(test_ second_class_dir)
+
+#Test catalogue of unclassified carrot roots 
+test_not_classified_dir = os.path.join(test_dir, 'not_classified') 
+os.mkdir(test_not_classified_dir)
+
+#Copying 237 carrot root images train_dir
+fnames = ['train.{}.jpg'.format(i) for i in range(237)]
+for fname in fnames:
+    src = os.path.join(original_dataset_dir, fname)
+    dst = os.path.join(train_dir, fname)
+    shutil.copyfile(src, dst)
+
+#Copying 110 carrot root images into validation_dir  
+fnames = ['validation.{}.jpg'.format(i) for i in range(237, 347)]
+for fname in fnames:
+    src = os.path.join(original_dataset_dir, fname)
+    dst = os.path.join(validation_dir, fname)
+    shutil.copyfile(src, dst)
+
+#Copying 110 carrot root images into test_dir 
+fnames = ['test.{}.jpg'.format(i) for i in range(347, 457)]
+for fname in fnames:
+    src = os.path.join(original_dataset_dir, fname)
+    dst = os.path.join(test_dir, fname)
+    shutil.copyfile(src, dst)
+
+print('total training images:', len(os.listdir(train_dir)))
+total_training_images: 237
+print('total validation images:', len(os.listdir(validation_dir)))
+total_validation_images: 110
+print('total test images:', len(os.listdir(test_dir)))
+total_test_images: 110
+
+Code 2. Code to automatically copy images from the source directory to the learning, validation and test directories
+
